@@ -120,7 +120,7 @@ def generate_pdf(df, plot_imgs):
         elements.append(Spacer(1, 0.3 * inch))
 
     doc.build(elements)
-    return send_file("/tmp/report.pdf", as_attachment=True)
+    return "/tmp/report.pdf"
 
 # -------------------- ROUTES --------------------
 @app.route("/")
@@ -167,15 +167,13 @@ def download_csv():
 
 @app.route("/download_pdf")
 def download_pdf():
-    csv_path = "static/cleaned_data.csv"
+    csv_path = "/tmp/cleaned_data.csv"
 
-    # 🔒 Safety check
     if not os.path.exists(csv_path):
         return "No processed file found. Please upload first."
 
     df = pd.read_csv(csv_path)
 
-    # Limit for safety
     df = df.head(300)
 
     plot_imgs, cleaned_df = generate_plots(df)
