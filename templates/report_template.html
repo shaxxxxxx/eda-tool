@@ -1,0 +1,53 @@
+<!DOCTYPE html>
+<html>
+  <head>
+    <title>EDA Report</title>
+    <link
+      rel="stylesheet"
+      href="{{ url_for('static', filename='css/report.css') }}"
+    />
+    <link
+      href="https://fonts.googleapis.com/css2?family=Press+Start+2P&family=Sora:wght@300;400;500;600&display=swap"
+      rel="stylesheet"
+    />
+    <link rel="stylesheet" href="{{ url_for('static', filename='css/report.css') }}">
+  </head>
+  <body>
+    <section class="section">
+      <div class="container">
+        <h1 class="page-title">📊 Analysis Report</h1>
+        {% if pdf_file %} {% endif %}
+
+        <div class="card">
+          <h2>Dataset Preview</h2>
+          {{ table | safe }}
+        </div>
+
+        <div class="card">
+          <h2>Visualizations</h2>
+          <div class="plots-grid">
+            {% for plot in plots %}
+            <div
+              class="plot-item {% if loop.last and loop.length % 2 != 0 %}center-plot{% endif %}"
+            >
+              <img src="data:image/png;base64,{{ plot }}" class="plot-img" />
+            </div>
+            {% endfor %}
+          </div>
+        </div>
+
+    
+          <div class="card download-card">
+            <h2>Download Report</h2>
+            <a href="{{ url_for('static', filename='report.pdf') }}" class="download-btn">
+              ⬇ Download Report as PDF
+            </a>
+            <a href="{{ url_for('download_csv') }}" class="download-btn" style="margin-left: 20px;">
+              ⬇ Download Cleaned CSV
+            </a>
+          </div>          
+        </div>
+      </div>
+    </section>
+  </body>
+</html>

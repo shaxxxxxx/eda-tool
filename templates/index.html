@@ -1,0 +1,1266 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>EDA Tool</title>
+
+    <!-- PIXEL + BODY FONT -->
+    <link
+      href="https://fonts.googleapis.com/css2?family=Press+Start+2P&family=Sora:wght@300;400;500;600&display=swap"
+      rel="stylesheet"
+    />
+
+    <style>
+      * {
+        margin: 0;
+        padding: 0;
+        box-sizing: border-box;
+        font-family: "Sora", sans-serif;
+      }
+
+      body {
+  background: radial-gradient(circle at top, #140024, #000000 60%);
+  color: white;
+  scroll-behavior: smooth;
+}
+      /* ================= NAVBAR ================= */
+      nav {
+        position: fixed;
+        top: 0;
+        width: 100%;
+        padding: 18px 60px;
+        display: flex;
+        justify-content: space-between;
+        align-items: center;
+        background: rgba(20, 0, 40, 0.7);
+        backdrop-filter: blur(15px);
+        z-index: 1000;
+      }
+
+      nav h1 {
+        font-family: "Press Start 2P", cursive;
+        font-size: 16px;
+        color: #c87fff;
+      }
+
+      nav a {
+        color: #ddd;
+        text-decoration: none;
+        margin-left: 30px;
+        font-size: 14px;
+      }
+
+      nav a:hover {
+        color: #c77dff;
+      }
+
+      .close-btn{
+        display: none;
+      }
+
+      /* ================= SECTIONS ================= */
+      section {
+        min-height: 100vh;
+        padding: 210px 120px;
+        display: flex;
+        flex-direction: column;
+        justify-content: center;
+        position: relative;
+      }
+
+      .section-title {
+        font-family: "Press Start 2P", cursive;
+        font-size: 26px;
+        margin-bottom: 40px;
+        color: #e0aaff;
+        text-align: center;
+      }
+      
+      .upload-title {
+        font-family: "Press Start 2P", cursive;
+        font-size: 26px;
+        margin-top:10%;
+        margin-bottom:-10%;
+        color: #e0aaff;
+        text-align: center;
+      }
+      
+    .hero h2{
+      font-family: "Press Start 2P", cursive;
+    }
+
+      /* ================= HERO ================= */
+      .hero {
+        text-align: center;
+        background: radial-gradient(
+          circle at top,
+          rgba(199, 125, 255, 0.2),
+          transparent 70%
+        );
+        background-attachment: fixed;
+      }
+      .hero {
+        background-image: url("your-bg.jpg");
+        background-attachment: fixed;
+        background-position: center;
+        background-size: cover;
+        height: 100vh;
+      }
+      .parallax-layer {
+        will-change: transform;
+        transition: transform 0.1s linear;
+      }
+
+      .hero h2 {
+        font-family: "Press Start 2P", cursive;
+        font-size: 42px;
+        margin-top: 40px;
+        margin-bottom: 25px;
+        text-shadow: 0 0 12px rgba(199, 125, 255, 0.4);
+      }
+
+      .hero p {
+        max-width: 850px;
+        margin: auto;
+        font-size: 18px;
+        line-height: 1.8;
+        color: #dddddd;
+      }
+
+      .version {
+        margin-top: 30px;
+        color: #c77dff;
+        font-weight: 600;
+      }
+
+      /* ================= GLASS CARD ================= */
+      .card {
+        max-width: 700px;
+        margin: auto;
+        padding: 45px;
+        border-radius: 24px;
+        background: rgba(255, 255, 255, 0.08);
+        backdrop-filter: blur(18px);
+        border: 1px solid rgba(255, 255, 255, 0.15);
+        box-shadow: 0 20px 50px rgba(199, 125, 255, 0.25);
+        transition: 0.4s;
+      }
+
+      .card:hover {
+        transform: translateY(-10px) scale(1.02);
+        box-shadow: 0 30px 70px rgba(199, 125, 255, 0.45);
+      }
+
+      .card h3 {
+        font-family: "Press Start 2P", cursive;
+        text-align: center;
+        margin-bottom: 30px;
+        font-size: 20px;
+        color: #f1c6ff;
+      }
+
+      input[type="file"] {
+        width: 100%;
+        padding: 15px;
+        border-radius: 12px;
+        border: none;
+        margin-bottom: 25px;
+        background: rgba(0, 0, 0, 0.6);
+        color: white;
+      }
+
+      button {
+        width: 100%;
+        padding: 16px;
+        border-radius: 30px;
+        border: none;
+        background: linear-gradient(135deg, #9d4edd, #c77dff);
+        color: black;
+        font-weight: 700;
+        cursor: pointer;
+        transition: 0.3s;
+      }
+
+      button:hover {
+        transform: scale(1.05);
+      }
+
+      /* ================= GRID ================= */
+      .grid {
+        display: grid;
+        grid-template-columns: repeat(auto-fit, minmax(260px, 1fr));
+        gap: 30px;
+      }
+
+      .box {
+        padding: 35px;
+        border-radius: 22px;
+        background: rgba(255, 255, 255, 0.08);
+        backdrop-filter: blur(16px);
+        border: 1px solid rgba(255, 255, 255, 0.15);
+        transition: 0.4s;
+      }
+
+      .box:hover {
+        transform: translateY(-12px);
+        box-shadow: 0 25px 50px rgba(199, 125, 255, 0.5);
+      }
+
+      .box h4 {
+        font-family: "Press Start 2P", cursive;
+        font-size: 16px;
+        color: #e0aaff;
+        margin-bottom: 15px;
+      }
+
+      .box p {
+        font-size: 15px;
+        line-height: 1.7;
+        color: #e5e5e5;
+      }
+
+      /* ================= FOOTER ================= */
+      footer {
+        text-align: center;
+        padding: 35px 20px;
+        background: rgba(20, 0, 40, 0.6);
+        font-size: 14px;
+      }
+
+      footer span {
+        color: #c77dff;
+        font-weight: 700;
+      }
+
+      @media (max-width: 768px) {
+        section {
+          padding: 140px 30px;
+        }
+        .hero h2 {
+          font-size: 32px;
+        }
+      }
+
+      /* ================= PREMIUM SPLIT UPLOAD ================= */
+      /* OVERRIDE default section behavior ONLY for upload */
+      #upload {
+        flex-direction: row !important;
+        display: flex !important;
+        align-items: center;
+        justify-content: center;
+        gap: 120px;
+      }
+
+      .upload-section {
+        display: flex;
+        align-items: center;
+        justify-content: center;
+        gap: 120px;
+        min-height: 100vh;
+        padding: 140px 80px;
+      }
+
+      .upload-left {
+        flex: 1;
+        display: flex;
+        justify-content: flex-end;
+      }
+
+      .upload-right {
+        flex: 1;
+        display: flex;
+        justify-content: flex-start;
+        align-items: center;
+      }
+
+      /* Improve card look */
+      .upload-wrapper {
+        max-width: 500px;
+        padding: 60px;
+        border-radius: 32px;
+        background: rgba(255, 255, 255, 0.05);
+        backdrop-filter: blur(25px);
+        border: 1px solid rgba(199, 125, 255, 0.25);
+        box-shadow: 0 0 40px rgba(199, 125, 255, 0.15),
+                    0 30px 80px rgba(0, 0, 0, 0.8);
+      }
+
+      /* Robot better positioning */
+      .robot-head {
+        margin: 0;
+        animation: float 3s ease-in-out infinite;
+        margin-left: 41%;
+        margin-top: 5%;
+        width: 200px;
+        height: 160px;
+        position: relative;
+        perspective: 800px;
+        animation: float 3s ease-in-out infinite;
+        margin: 0;
+      }
+
+      /* Responsive */
+      @media (max-width: 900px) {
+        .upload-section {
+          flex-direction: column;
+          gap: 60px;
+          text-align: center;
+        }
+
+        .upload-left,
+        .upload-right {
+          justify-content: center;
+        }
+      }
+
+      /* ================= FILE INPUT ================= */
+      .file-input-container {
+        margin-bottom: 25px;
+      }
+
+      .custom-file-upload {
+        display: inline-block;
+        padding: 14px 25px;
+        border-radius: 30px;
+        background: linear-gradient(135deg, #cfa8ff, #7a4dff);
+        color: black;
+        font-size: 11px;
+        cursor: pointer;
+        transition: 0.3s;
+      }
+
+      .custom-file-upload:hover {
+        transform: scale(1.05);
+      }
+
+      input[type="file"] {
+        display: none;
+      }
+
+      #file-name {
+        display: block;
+        margin-top: 12px;
+        font-size: 10px;
+        color: #ccc;
+      }
+      /* ================= ROBOT ================= */
+
+      .robot-head {
+  width: 270px;
+  aspect-ratio: 27 / 20;
+  margin: 0 auto;
+  position: relative;
+  perspective: 800px;
+  animation: float 3s ease-in-out infinite;
+}
+
+
+      .helmet {
+        width: 100%;
+        height: 100%;
+        background: #ffffff;
+        border-radius: 60px;
+        display: flex;
+        justify-content: center;
+        align-items: center;
+        box-shadow: inset -6px -6px 15px rgba(0, 0, 0, 0.1),
+          inset 6px 6px 15px rgba(255, 255, 255, 0.8),
+          0 15px 40px rgba(0, 0, 0, 0.4);
+      }
+
+      .visor {
+        width: 75%;
+  height: 70%;
+        background: linear-gradient(145deg, #0c1b2a, #08131f);
+        border-radius: 52px;
+        display: flex;
+        justify-content: center;
+        align-items: center;
+        overflow: hidden;
+        position: relative;
+      }
+
+      .eyes {
+        display: flex;
+        gap: 30px;
+      }
+
+      .eye {
+        width: 28px;
+        height: 38px;
+        background: #806ce7;
+        border-radius: 50%;
+        box-shadow: 0 0 12px rgb(115, 107, 217);
+        transition: all 0.15s ease; /* faster */
+      } 
+
+
+      
+      /* Floating Shadow */
+      .robot-shadow {
+        width: 180px;
+        height: 30px;
+        margin: 0 auto;
+        margin-top: 15%;
+        background: radial-gradient(
+          ellipse at center,
+          rgba(248, 248, 248, 1.3) 0%,
+          rgba(255, 255, 255, 0.763) 40%,
+          rgba(255, 255, 255, 0.1) 70%,
+          transparent 100%
+        );
+        border-radius: 50%;
+        filter: blur(10px);
+        animation: shadowPulse 3s ease-in-out infinite;
+      }
+
+      /* Sync shadow with robot float */
+      @keyframes shadowPulse {
+        0% {
+          transform: scale(1);
+          opacity: 0.5;
+        }
+        50% {
+          transform: scale(0.85);
+          opacity: 0.3;
+        }
+        100% {
+          transform: scale(1);
+          opacity: 0.5;
+        }
+      }
+
+      /* Blink animation */
+      @keyframes blink {
+        0%,
+        90%,
+        100% {
+          height: 38px;
+        }
+        95% {
+          height: 2px;
+        }
+      }
+
+      @keyframes float {
+        0%,
+        100% {
+          transform: translateY(0px);
+        }
+        50% {
+          transform: translateY(-8px);
+        }
+      }
+
+      /* ================= FILE INPUT ================= */
+      input[type="file"] {
+        width: 100%;
+        padding: 18px;
+        margin-bottom: 25px;
+        border-radius: 14px;
+        border: 1px solid rgba(200, 150, 255, 0.3);
+        background: rgba(0, 0, 0, 0.6);
+        color: #ddd;
+        font-size: 11px;
+        cursor: pointer;
+        transition: 0.3s ease;
+      }
+
+      input[type="file"]:hover {
+        border: 1px solid rgba(200, 150, 255, 0.6);
+      }
+
+      /* ================= BUTTON ================= */
+      button[type="submit"] {
+        width: 100%;
+        padding: 16px;
+        border-radius: 40px;
+        border: none;
+        background: linear-gradient(135deg, #cfa8ff, #7a4dff);
+        color: black;
+        font-size: 11px;
+        cursor: pointer;
+        box-shadow: 0 0 8px rgba(200, 150, 255, 0.3);
+        transition: all 0.3s ease;
+      }
+
+      button[type="submit"]:hover {
+        transform: scale(1.05);
+        box-shadow: 0 0 14px rgba(200, 150, 255, 0.5);
+      }
+
+      button[type="submit"]:active {
+        transform: scale(0.98);
+      }
+
+      /* ================= STAGGER BLUR REVEAL ================= */
+
+      .reveal {
+        opacity: 0;
+        transform: translateY(40px);
+        filter: blur(8px);
+        transition: opacity 0.8s ease, transform 0.8s ease, filter 0.8s ease;
+      }
+
+      .reveal.show {
+        opacity: 1;
+        transform: translateY(0);
+        filter: blur(0);
+      }
+      @keyframes float {
+        0% {
+          transform: translateY(0px);
+        }
+        50% {
+          transform: translateY(-18px);
+        }
+        100% {
+          transform: translateY(0px);
+        }
+      }
+      /* ================= WHY SECTION DIFFERENT STYLE ================= */
+
+/* ================= TIMELINE BASE ================= */
+.timeline {
+  position: relative;
+  max-width: 1000px;
+  margin: auto;
+}
+
+/* Line for desktop */
+@media (min-width: 901px) {
+  .timeline::before {
+    content: "";
+    position: absolute;
+    left: 50%;           /* center line */
+    top: 140px;          /* below the section title */
+    width: 2px;
+    height: calc(100% - 140px);
+    background: linear-gradient(to bottom, #c77dff, transparent);
+    transform: translateX(-50%);
+  }
+
+  .timeline-item {
+    width: 50%;
+    position: relative;
+    padding: 40px;
+  }
+
+  .timeline-item.left {
+    left: 0;
+    text-align: right;
+  }
+
+  .timeline-item.right {
+    left: 50%;
+    text-align: left;
+  }
+}
+
+/* Mobile layout */
+@media (max-width: 900px) {
+  .timeline::before {
+    content: "";
+    position: absolute;
+    top: 0;               /* start at top of container */
+    left: 20px;           /* left edge of timeline */
+    width: 2px;
+    height: 100%;
+    background: linear-gradient(to bottom, #c77dff, transparent);
+    transform: none;
+  }
+
+  .timeline-item {
+    width: 100%;
+    padding: 25px 20px 25px 60px;  /* space for left line */
+    text-align: left;
+    left: 0 !important;
+  }
+
+  .timeline-item.left,
+  .timeline-item.right {
+    left: 0;
+    text-align: left;
+  }
+
+  .timeline-content {
+    padding: 20px;
+  }
+}
+
+/* ================= TIMELINE ITEM CONTENT ================= */
+.why-section .why-title {
+  font-family: "Press Start 2P", cursive; 
+  font-size: 26px;                        
+  color: #e0aaff;                         
+  text-align: center;
+  margin-bottom: 40px;                    
+}
+
+
+.timeline-content {
+  background: rgba(255, 255, 255, 0.05);
+  padding: 30px;
+  border-radius: 18px;
+  backdrop-filter: blur(15px);
+  border: 1px solid rgba(199, 125, 255, 0.2);
+  transition: 0.4s ease;
+}
+
+.timeline-content:hover {
+  transform: scale(1.03);
+  box-shadow: 0 0 25px rgba(199, 125, 255, 0.4);
+}
+
+
+      /* Content box */
+      .timeline-content {
+        background: rgba(255, 255, 255, 0.05);
+        padding: 40px;
+        border-radius: 18px;
+        backdrop-filter: blur(15px);
+        border: 1px solid rgba(199, 125, 255, 0.2);
+        transition: 0.4s ease;
+      }
+
+      .timeline-content:hover {
+        transform: scale(1.03);
+        box-shadow: 0 0 25px rgba(199, 125, 255, 0.4);
+      }
+
+      /* Responsive */
+      @media (max-width: 900px) {
+
+/* Make upload section vertical */
+#upload,
+.upload-section {
+  flex-direction: column !important;
+  gap: 50px;
+  padding: 120px 25px;
+  text-align: center;
+}
+
+.upload-left,
+.upload-right {
+  width: 100%;
+  justify-content: center;
+}
+
+/* Upload card full width */
+.upload-wrapper {
+  width: 100%;
+  max-width: 500px;
+  padding: 35px;
+}
+
+/* Robot centered under upload */
+.robot-head {
+  margin: 0 auto;
+  width: 200px;
+  height: 160px;
+}
+
+.robot-shadow {
+  margin: 20px auto 0;
+}
+}
+
+      .upload-section {
+  padding-bottom: -30px;
+}
+
+
+
+.why-section{
+    padding-top:10%;
+}
+
+.process-section{
+    padding-top: -70px;
+}
+.upload-section{
+    padding-top: -50px;
+}
+
+@media (max-width: 768px) {
+
+section {
+  padding: 120px 25px;
+  min-height: auto;
+}
+
+.section-title,
+.upload-title,
+.why-title {
+  font-size: 20px;
+  margin-bottom: 30px;
+}
+
+.hero h2 {
+  font-size: 28px;
+}
+
+.hero p {
+  font-size: 15px;
+}
+
+.card,
+.box {
+  padding: 25px;
+}
+
+}
+
+@media (max-width: 768px) {
+  .upload-section,
+  .process-section {
+    padding: 90px 25px;
+  }
+}
+
+/* ===== NAVBAR RESPONSIVE ===== */
+
+.menu-toggle {
+  display: none;
+  font-size: 26px;
+  cursor: pointer;
+  color: #c77dff;
+}
+
+/* Default nav layout */
+.nav-links {
+  display: flex;
+  align-items: center;
+}
+
+/* Mobile layout */
+@media (max-width: 900px) {
+
+  nav {
+    padding: 18px 25px;
+  }
+
+  .menu-toggle {
+    display: block;
+    z-index: 1100;
+  }
+
+  .nav-links {
+    color: white;
+  position: fixed;
+  top: 0;
+  right: -100%;
+  height: 100vh;
+  width: 260px;
+
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  gap: 40px;
+
+  background: #0c0015e6;
+  box-shadow: 
+    -10px 0 30px rgba(250, 250, 250, 0.2),
+    inset 1px 0 0 rgba(255, 255, 255, 0.05);
+
+  transition: right 0.4s ease;
+  z-index: 2000;
+}
+
+
+  .nav-links a {
+    margin: 0;
+    font-size: 16px;
+  }
+
+  .nav-links.active {
+    right: 0;
+  }
+
+
+.close-btn {
+  position: absolute;
+  top: 40px;
+  right: 40px;
+  font-size: 28px;
+  color: white;
+  cursor: pointer;
+  display: block;
+}
+
+.why-section {
+  padding: 120px 25px;
+}
+
+.timeline::before {
+  left: 15px;
+}
+
+.timeline-item {
+  width: 100%;
+  padding: 25px 20px 25px 45px;
+}
+
+.timeline-item.left,
+.timeline-item.right {
+  left: 0;
+  text-align: left;
+}
+
+.timeline-content {
+  padding: 20px;
+}
+
+
+  #upload,
+  .upload-section {
+    flex-direction: column !important;
+    gap: 50px;
+    padding: 120px 25px;
+  }
+
+  .upload-left,
+  .upload-right {
+    justify-content: center;
+    width: 100%;
+  }
+}
+
+
+.why-section {
+  padding: 120px 25px;
+}
+
+/* Desktop Timeline */
+/* @media (min-width: 901px) {
+  .timeline::before {
+    content: "";
+    position: absolute;
+    left: 50%;
+    top: 340px; /* move down below title */
+    width: 2px;
+    height: calc(100% - 140px);
+    background: linear-gradient(to bottom, #c77dff, transparent);
+    transform: translateX(-50%);
+  }
+} */
+
+
+    </style>
+  </head>
+
+  <body>
+    <!-- NAV -->
+    <nav>
+      <h1>EDA Tool</h1>
+    
+      <div class="nav-links" id="navLinks">
+        <div class="close-btn">&times;</div>
+
+        <a href="#hero">Home</a>
+        <a href="#why-eda">Why EDA</a>
+        <a href="#upload">Upload</a>
+        <a href="#process">Process</a>
+      </div>
+    
+      <div class="menu-toggle" id="menuToggle">
+        ☰
+      </div>
+    </nav>
+    
+
+    <!-- HERO -->
+    <section id="hero" class="hero reveal">
+      <h2 class="reveal">Exploratory Data Analysis Made Simple</h2>
+      <p>
+        A futuristic, AI-powered EDA tool that allows users to upload datasets
+        and instantly visualize patterns, distributions, correlations, and
+        insights without writing a single line of code.
+      </p>
+      <div class="version">Current Version: V1.0</div>
+    </section>
+
+    <!-- WHY EDA DIFFERENT STYLE -->
+    <section id="why-eda" class="why-section">
+        <h2 class="why-title reveal">
+          Why EDA Is Important Before Model Training
+        </h2>
+  
+        <div class="timeline">
+          <div class="timeline-item left reveal">
+            <div class="timeline-content">
+              <h4>Understand Data Quality</h4>
+              <p>
+                Detect missing values, outliers, duplicates and inconsistencies
+                before training any model.
+              </p>
+            </div>
+          </div>
+  
+          <div class="timeline-item right reveal">
+            <div class="timeline-content">
+              <h4>Prevent Garbage In → Garbage Out</h4>
+              <p>
+                Machine learning models amplify the quality of your data — good or
+                bad.
+              </p>
+            </div>
+          </div>
+  
+          <div class="timeline-item left reveal">
+            <div class="timeline-content">
+              <h4>Reveal Feature Relationships</h4>
+              <p>
+                Correlations and distributions guide smarter feature selection.
+              </p>
+            </div>
+          </div>
+  
+          <div class="timeline-item right reveal">
+            <div class="timeline-content">
+              <h4>Choose the Right Model</h4>
+              <p>
+                EDA helps determine whether your task is classification,
+                regression, clustering or time series.
+              </p>
+            </div>
+          </div>
+        </div>
+      </section>
+
+    <!-- UPLOAD -->
+    <h2 class="upload-title reveal">upload</h2>
+
+    <section id="upload" class="upload-section">
+      <div class="upload-left">
+        <div class="upload-wrapper reveal">
+            <form id="uploadForm" method="POST" action="/upload" enctype="multipart/form-data">
+                <div class="file-input-container">
+                  <label for="file-upload" class="custom-file-upload">
+                    Choose CSV / Excel File
+                  </label>
+                  <input id="file-upload" type="file" name="file" required />
+                  <span id="file-name">No file selected</span>
+                </div>
+                <button type="submit" id="analyzeBtn">Analyze Data</button>
+              </form>
+        </div>
+      </div>
+
+      <div class="upload-right">
+        <div class="pixar-assistant">
+          <div class="robot-head">
+            <div class="helmet">
+              <div class="visor">
+                <div class="eyes">
+                  <div class="eye left"></div>
+                  <div class="eye right"></div>
+                </div>
+              </div>
+            </div>
+            <div class="robot-shadow"></div>
+          </div>
+        </div>
+    </div>
+    </section>
+    
+
+    
+
+    <!-- PROCESS -->
+    <section id="process" class="process-section">
+      <h2 class="section-title reveal">What V1 Does</h2>
+      <div class="grid">
+        <div class="box reveal">
+          <h4>Data Summary</h4>
+          <p>
+            Automatically generates statistical summaries including mean,
+            median, null values, and distributions.<br>V1 gives a quick snapshot of the data’s distribution, central tendencies, and missing values, along with visual insights.
+          </p>
+        </div>
+        <div class="box reveal">
+          <h4>Visual Insights</h4>
+          <p>
+            Creates histograms, box plots, correlation heatmaps, and feature
+            comparisons instantly.<br>Categorical column insights (like bar charts for categories) are not generated in V1.
+            <br>The report preview only shows first 20 rows; plots are based on the full dataset.
+          </p>
+        </div>
+        <div class="box reveal">
+          <h4>Auto imputation</h4>
+          <p>
+            Any NaN or empty cells in numeric columns, Any missing categorical values are replaced with the mean and mode of that column.<br>
+            Even if your Excel file stores numbers as text, the tool converts them to numeric first
+          </p>
+        </div>
+      </div>
+    </section>
+
+    <!-- V2 -->
+    <section id="v2" class="reveal">
+      <h2 class="section-title reveal">What You Can Expect in V2</h2>
+      <div class="grid">
+        <div class="box reveal">
+          <h4>ML Suggestions</h4>
+          <p>
+            Detects whether your dataset is meant for:
+            Classification,Regression,Time Series Analysis,Clustering.<br />
+            Identifies potential target column patterns Analyzes data types and
+            unique values to infer task type
+          </p>
+        </div>
+        <div class="box reveal">
+          <h4>Conditional EDA Modules</h4>
+          <p>
+            For Classification → Class distribution & imbalance detection For
+            Regression → Target distribution & outlier detection <br />For Time
+            Series → Trend & seasonality hints <br />
+            For Clustering → Feature correlation & scaling recommendation
+          </p>
+        </div>
+        <div class="box reveal">
+          <h4>Export & Reports</h4>
+          <p>
+            Download complete EDA reports in PDF or notebook formats for
+            presentations and sharing.Not just raw outputs but it also includes
+            <br />
+            dataset overview,plots, cleaned dataset.
+          </p>
+        </div>
+      </div>
+    </section>
+
+    <!-- FOOTER -->
+    <footer>Built by <span>D sharanya</span> | EDA Tool © 2026</footer>
+
+    <script>
+      const robot = document.querySelector(".robot-head");
+      const leftEye = document.querySelector(".eye.left");
+      const rightEye = document.querySelector(".eye.right");
+
+      let mouseX = 0;
+      let mouseY = 0;
+      let currentX = 0;
+      let currentY = 0;
+
+      let hoverCount = 0;
+      let isHovering = false;
+
+      /* -----------------------------
+           CURSOR TRACKING
+        ----------------------------- */
+      document.addEventListener("mousemove", (e) => {
+        const rect = robot.getBoundingClientRect();
+        mouseX = e.clientX - (rect.left + rect.width / 2);
+        mouseY = e.clientY - (rect.top + rect.height / 2);
+      });
+
+      function animateEyes() {
+        // Smooth interpolation (removes jitter)
+        currentX += (mouseX - currentX) * 0.07;
+        currentY += (mouseY - currentY) * 0.07;
+
+        const maxMove = 8;
+
+        const moveX = Math.max(Math.min(currentX / 20, maxMove), -maxMove);
+        const moveY = Math.max(Math.min(currentY / 20, maxMove), -maxMove);
+
+        // Preserve any rotation already applied (like angry)
+        const leftRotation = leftEye.dataset.rotate || "";
+        const rightRotation = rightEye.dataset.rotate || "";
+
+        leftEye.style.transform = `
+    translate(${moveX}px, ${moveY}px)
+    ${leftRotation}
+`;
+
+        rightEye.style.transform = `
+    translate(${moveX}px, ${moveY}px)
+    ${rightRotation}
+`;
+
+        requestAnimationFrame(animateEyes);
+      }
+
+      animateEyes();
+
+      /* -----------------------------
+           EXPRESSIONS
+        ----------------------------- */
+
+      function resetEyes() {
+        leftEye.dataset.rotate = "";
+        rightEye.dataset.rotate = "";
+
+        leftEye.style.background = "#22d3ee";
+        rightEye.style.background = "#22d3ee";
+
+        leftEye.style.color = "";
+        rightEye.style.color = "";
+
+        leftEye.style.height = "38px";
+        rightEye.style.height = "38px";
+
+        leftEye.style.fontSize = "";
+        rightEye.style.fontSize = "";
+
+        leftEye.style.borderRadius = "50%";
+        rightEye.style.borderRadius = "50%";
+
+        leftEye.style.boxShadow = "0 0 12px #22d3ee";
+        rightEye.style.boxShadow = "0 0 12px #22d3ee";
+
+        leftEye.style.transform = "";
+        rightEye.style.transform = "";
+      }
+
+      function happy() {
+        leftEye.style.height = "18px";
+        rightEye.style.height = "18px";
+        leftEye.style.borderRadius = "50px";
+        rightEye.style.borderRadius = "50px";
+      }
+
+      function angry() {
+        leftEye.dataset.rotate = "rotate(-15deg)";
+        rightEye.dataset.rotate = "rotate(15deg)";
+      }
+
+      function wink() {
+        leftEye.style.height = "2px";
+      }
+
+      function surprised() {
+        leftEye.style.height = "45px";
+        rightEye.style.height = "45px";
+      }
+
+      function sleepy() {
+        leftEye.style.height = "12px";
+        rightEye.style.height = "12px";
+        leftEye.style.borderRadius = "0 0 50px 50px";
+        rightEye.style.borderRadius = "0 0 50px 50px";
+      }
+
+      function squishSmile() {
+        leftEye.style.height = "20px";
+        rightEye.style.height = "20px";
+        leftEye.style.borderRadius = "50px";
+        rightEye.style.borderRadius = "50px";
+      }
+
+      /* Expression list */
+      const expressions = [happy, wink, angry, surprised, sleepy, squishSmile];
+
+      /* -----------------------------
+           HOVER → NEXT EXPRESSION
+        ----------------------------- */
+      robot.addEventListener("mouseenter", () => {
+        isHovering = true;
+
+        resetEyes();
+
+        expressions[hoverCount % expressions.length]();
+
+        hoverCount++;
+      });
+
+      robot.addEventListener("mouseleave", () => {
+        isHovering = false;
+        resetEyes();
+      });
+
+      /* -----------------------------
+           BLINK EVERY 2 SEC
+        ----------------------------- */
+      setInterval(() => {
+        if (isHovering) return;
+
+        leftEye.style.height = "2px";
+        rightEye.style.height = "2px";
+
+        setTimeout(() => {
+          if (!isHovering) resetEyes();
+        }, 150);
+      }, 2000);
+
+      const visor = document.querySelector(".visor");
+
+      let scrollTimeout;
+
+      window.addEventListener("scroll", () => {
+        // Trigger glitch
+        visor.classList.add("cyber-glitch");
+
+        clearTimeout(scrollTimeout);
+
+        scrollTimeout = setTimeout(() => {
+          visor.classList.remove("cyber-glitch");
+        }, 200);
+      });
+      /* -----------------------------
+   STAGGER BLUR SCROLL REVEAL
+----------------------------- */
+
+      const reveals = document.querySelectorAll(".reveal");
+
+      const observer = new IntersectionObserver(
+        (entries) => {
+          entries.forEach((entry) => {
+            if (entry.isIntersecting) {
+              const parent = entry.target.parentElement;
+
+              // If it's inside grid → stagger effect
+              if (parent.classList.contains("grid")) {
+                const siblings = [...parent.querySelectorAll(".reveal")];
+
+                siblings.forEach((el, index) => {
+                  setTimeout(() => {
+                    el.classList.add("show");
+                  }, index * 150); // stagger delay
+                });
+              } else {
+                entry.target.classList.add("show");
+              }
+            }
+          });
+        },
+        { threshold: 0.2 }
+      );
+
+      reveals.forEach((el) => observer.observe(el));
+      const fileInput = document.getElementById('file-upload');
+      const fileNameSpan = document.getElementById('file-name');
+      const uploadForm = document.getElementById('uploadForm');
+      const reportContainer = document.getElementById('report-container');
+
+      // Show selected file name
+      fileInput.addEventListener('change', () => {
+        fileNameSpan.textContent = fileInput.files[0] ? fileInput.files[0].name : 'No file selected';
+      });
+
+  
+      const menuToggle = document.querySelector(".menu-toggle");
+const navLinks = document.querySelector(".nav-links");
+const closeBtn = document.querySelector(".close-btn");
+
+menuToggle.addEventListener("click", () => {
+  navLinks.classList.add("active");
+});
+
+closeBtn.addEventListener("click", () => {
+  navLinks.classList.remove("active");
+});
+
+  document.querySelectorAll(".nav-links a").forEach(link => {
+  link.addEventListener("click", () => {
+    navLinks.classList.remove("active");
+  });
+});
+
+
+    </script>
+  </body>
+</html>
